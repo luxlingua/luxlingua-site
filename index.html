@@ -19,6 +19,11 @@
   .exercise button:hover {background:#1abc9c;}
   .banner {width:100%; height:150px; border-radius:10px; margin-bottom:15px; object-fit:cover;}
   .hidden {display:none;}
+  .form-box {background:#ecf0f1; padding:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1);}
+  .form-box input {display:block; width:90%; padding:8px; margin:10px 0; border-radius:5px; border:1px solid #ccc;}
+  .form-box button {padding:8px 15px; background:#2980b9; color:white; border:none; border-radius:5px; cursor:pointer;}
+  .form-box button:hover {background:#1abc9c;}
+  .motivation {background:#1abc9c; color:white; text-align:center; padding:15px; border-radius:10px; margin-bottom:20px;}
 </style>
 </head>
 <body>
@@ -27,12 +32,21 @@
 <h1>LuxLingua - Curso de Inglês e Espanhol</h1>
 </header>
 
-<!-- LOGIN -->
+<!-- LOGIN / CRIAR CONTA -->
 <div id="loginArea">
-<h2>Login do Aluno</h2>
-<p>Digite seu nome para acessar o curso:</p>
-<input type="text" id="username" placeholder="Seu nome">
-<button onclick="login()">Entrar</button>
+<div class="motivation">
+<h3>"Aprender um idioma é abrir portas para o mundo!"</h3>
+<p>"Cada aula é um passo mais perto do seu sucesso."</p>
+</div>
+<div class="form-box">
+<h2>Login</h2>
+<input type="text" id="loginUsername" placeholder="Nome de usuário">
+<button onclick="loginUser()">Entrar</button>
+<hr>
+<h2>Criar Conta</h2>
+<input type="text" id="newUsername" placeholder="Nome de usuário">
+<button onclick="createAccount()">Criar Conta</button>
+</div>
 </div>
 
 <!-- HOME -->
@@ -43,21 +57,18 @@
 <a href="#" onclick="showCourse('ingles')">Inglês</a>
 <a href="#" onclick="showCourse('espanhol')">Espanhol</a>
 <a href="#" onclick="showProgress()">Meu Progresso</a>
+<a href="#" onclick="logout()">Sair</a>
 </nav>
 </div>
 
-<!-- CURSO -->
+<!-- CURSOS -->
 <div id="courseArea" class="hidden">
 
-<!-- ================= INGLÊS ================= -->
+<!-- INGLÊS -->
 <section id="ingles" class="hidden">
 <h2>Curso de Inglês</h2>
-
-<!-- Aula 1 a 30 com banners e exercícios -->
-<!-- Aqui vou colocar as 30 aulas, cada uma com banner e exercícios automáticos -->
-
-<!-- Exemplo Aula 1 -->
-<img src="https://images.unsplash.com/photo-1581091215365-aaa2c5d6203f?fit=crop&w=800&h=150" class="banner" alt="Aula 1">
+<!-- 30 aulas de exemplo -->
+<img src="https://images.unsplash.com/photo-1581091215365-aaa2c5d6203f?fit=crop&w=800&h=150" class="banner">
 <h3>Aula 1 - Saudações e Apresentações</h3>
 <p>Aprenda a cumprimentar alguém e se apresentar de forma educada.</p>
 <ul>
@@ -74,9 +85,8 @@
 </div>
 
 <!-- Aula 2 -->
-<img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=800&h=150" class="banner" alt="Aula 2">
+<img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=800&h=150" class="banner">
 <h3>Aula 2 - Perguntando como alguém está</h3>
-<p>Aprenda a perguntar sobre o bem-estar de alguém.</p>
 <ul>
 <li>How are you? = Como você está?</li>
 <li>I am fine = Eu estou bem</li>
@@ -89,16 +99,14 @@
 <p id="result-eng2"></p>
 </div>
 
-<!-- ... Aqui você continuaria até Aula 30 -->
+<!-- Aqui você continua até Aula 30 (pode repetir a estrutura acima para cada aula) -->
 
 </section>
 
-<!-- ================= ESPANHOL ================= -->
+<!-- ESPANHOL -->
 <section id="espanhol" class="hidden">
 <h2>Curso de Espanhol</h2>
-
-<!-- Aula 1 a 30 com banners e exercícios -->
-<img src="https://images.unsplash.com/photo-1567598508487-7be914de5982?fit=crop&w=800&h=150" class="banner" alt="Aula 1">
+<img src="https://images.unsplash.com/photo-1567598508487-7be914de5982?fit=crop&w=800&h=150" class="banner">
 <h3>Aula 1 - Saludos y presentaciones</h3>
 <ul>
 <li>Hola = Olá</li>
@@ -114,7 +122,7 @@
 </div>
 
 <!-- Aula 2 -->
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=800&h=150" class="banner" alt="Aula 2">
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=800&h=150" class="banner">
 <h3>Aula 2 - Preguntando cómo estás</h3>
 <ul>
 <li>¿Cómo estás? = Como você está?</li>
@@ -128,21 +136,42 @@
 <p id="result-esp2"></p>
 </div>
 
-<!-- ... Aqui você continuaria até Aula 30 -->
+<!-- Aqui você continua até Aula 30 -->
 
 </section>
 
 </div>
 
 <script>
-function login() {
-  const name = document.getElementById('username').value.trim();
-  if(name!=='') {
-    localStorage.setItem('studentName',name);
+function createAccount() {
+  const newUser = document.getElementById('newUsername').value.trim();
+  if(!newUser) { alert('Digite um nome de usuário!'); return; }
+  let users = JSON.parse(localStorage.getItem('users') || '{}');
+  if(users[newUser]) { alert('Usuário já existe!'); return; }
+  users[newUser] = {progress:{ingles:[], espanhol:[]}};
+  localStorage.setItem('users', JSON.stringify(users));
+  alert('Conta criada com sucesso! Faça login agora.');
+  document.getElementById('newUsername').value = '';
+}
+
+function loginUser() {
+  const user = document.getElementById('loginUsername').value.trim();
+  let users = JSON.parse(localStorage.getItem('users') || '{}');
+  if(users[user]) {
+    localStorage.setItem('studentName', user);
     document.getElementById('loginArea').classList.add('hidden');
     document.getElementById('homeArea').classList.remove('hidden');
-    document.getElementById('studentName').textContent = name;
-  } else { alert('Digite seu nome!'); }
+    document.getElementById('studentName').textContent = user;
+  } else {
+    alert('Usuário não encontrado! Crie uma conta.');
+  }
+}
+
+function logout() {
+  localStorage.removeItem('studentName');
+  document.getElementById('homeArea').classList.add('hidden');
+  document.getElementById('courseArea').classList.add('hidden');
+  document.getElementById('loginArea').classList.remove('hidden');
 }
 
 function showCourse(id) {
@@ -158,7 +187,13 @@ function showCourse(id) {
 
 function showProgress() {
   const name = localStorage.getItem('studentName')||'Aluno';
-  alert('Progresso de '+name+':\n- Inglês: 30 aulas\n- Espanhol: 30 aulas\n(Progresso real será implementado em breve)');
+  let users = JSON.parse(localStorage.getItem('users') || '{}');
+  const user = users[name];
+  if(user){
+    alert(`Progresso de ${name}:\nInglês: ${user.progress.ingles.length} aulas\nEspanhol: ${user.progress.espanhol.length} aulas`);
+  } else {
+    alert('Usuário não encontrado.');
+  }
 }
 
 function checkAnswer(inputId, correct) {
