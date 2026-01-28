@@ -1,150 +1,178 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>LuxLingua | Inglês & Espanhol</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #0b0b0f;
-      color: #f5f5f5;
-    }
-    header {
-      background: linear-gradient(90deg, #111, #1c1c2b);
-      padding: 40px 20px;
-      text-align: center;
-    }
-    header h1 {
-      font-size: 2.5em;
-      letter-spacing: 2px;
-      color: #d4af37;
-    }
-    header p {
-      font-size: 1.1em;
-      opacity: 0.9;
-    }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      padding: 15px;
-      background: #12121a;
-    }
-    nav a {
-      color: #d4af37;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    section {
-      padding: 40px 20px;
-      max-width: 1000px;
-      margin: auto;
-    }
-    h2 {
-      color: #d4af37;
-      margin-bottom: 10px;
-    }
-    .card {
-      background: #1a1a24;
-      padding: 20px;
-      border-radius: 10px;
-      margin-bottom: 20px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.4);
-    }
-    ul {
-      padding-left: 20px;
-    }
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #0f0f14;
-      font-size: 0.9em;
-      opacity: 0.7;
-    }
-    button {
-      background: #d4af37;
-      color: #000;
-      border: none;
-      padding: 12px 20px;
-      border-radius: 30px;
-      font-size: 1em;
-      cursor: pointer;
-      margin-top: 10px;
-    }
-    button:hover {
-      opacity: 0.9;
-    }
-  </style>
+<meta charset="UTF-8">
+<title>LuxLingua - Curso de Inglês e Espanhol</title>
+<style>
+  body {font-family: Arial, sans-serif; margin:0; padding:0; background:#f5f5f5; color:#333;}
+  header {background:#2c3e50; color:white; padding:20px; text-align:center;}
+  header h1 {margin:0;}
+  #loginArea, #homeArea, #courseArea {max-width:900px; margin:auto; padding:20px;}
+  nav {display:flex; justify-content:center; background:#34495e; padding:10px 0; flex-wrap:wrap;}
+  nav a {margin:5px 10px; color:white; text-decoration:none; font-weight:bold; padding:10px 20px; border-radius:5px; transition:0.3s; background:#2980b9;}
+  nav a:hover {background:#1abc9c;}
+  section {padding:20px; margin-bottom:20px; border-radius:10px; box-shadow:0 0 10px rgba(0,0,0,0.1); background:white;}
+  h2 {color:#2c3e50;}
+  .exercise {margin-top:15px; padding:10px; background:#ecf0f1; border-radius:8px;}
+  .exercise input[type="text"] {padding:5px; width:60%;}
+  .exercise button {padding:5px 10px; margin-left:5px; background:#2980b9; color:white; border:none; border-radius:5px; cursor:pointer;}
+  .exercise button:hover {background:#1abc9c;}
+  .banner {width:100%; height:150px; border-radius:10px; margin-bottom:15px; object-fit:cover;}
+  .hidden {display:none;}
+</style>
 </head>
-
 <body>
 
 <header>
-  <h1>LuxLingua</h1>
-  <p>Inglês e Espanhol com padrão internacional</p>
+<h1>LuxLingua - Curso de Inglês e Espanhol</h1>
 </header>
 
+<!-- LOGIN -->
+<div id="loginArea">
+<h2>Login do Aluno</h2>
+<p>Digite seu nome para acessar o curso:</p>
+<input type="text" id="username" placeholder="Seu nome">
+<button onclick="login()">Entrar</button>
+</div>
+
+<!-- HOME -->
+<div id="homeArea" class="hidden">
+<h2>Bem-vindo, <span id="studentName"></span>!</h2>
+<p>Escolha o idioma que deseja estudar:</p>
 <nav>
-  <a href="#sobre">Sobre</a>
-  <a href="#ingles">Inglês</a>
-  <a href="#espanhol">Espanhol</a>
-  <a href="#contato">Contato</a>
+<a href="#" onclick="showCourse('ingles')">Inglês</a>
+<a href="#" onclick="showCourse('espanhol')">Espanhol</a>
+<a href="#" onclick="showProgress()">Meu Progresso</a>
 </nav>
+</div>
 
-<section id="sobre">
-  <div class="card">
-    <h2>Quem Somos</h2>
-    <p>
-      A <strong>LuxLingua</strong> é uma plataforma de ensino de idiomas criada para quem busca
-      fluência real, elegância profissional e oportunidades globais.
-      Nosso método é direto, moderno e focado em resultados.
-    </p>
-  </div>
+<!-- CURSO -->
+<div id="courseArea" class="hidden">
+
+<!-- ================= INGLÊS ================= -->
+<section id="ingles" class="hidden">
+<h2>Curso de Inglês</h2>
+
+<!-- Aula 1 a 30 com banners e exercícios -->
+<!-- Aqui vou colocar as 30 aulas, cada uma com banner e exercícios automáticos -->
+
+<!-- Exemplo Aula 1 -->
+<img src="https://images.unsplash.com/photo-1581091215365-aaa2c5d6203f?fit=crop&w=800&h=150" class="banner" alt="Aula 1">
+<h3>Aula 1 - Saudações e Apresentações</h3>
+<p>Aprenda a cumprimentar alguém e se apresentar de forma educada.</p>
+<ul>
+<li>Hello = Olá</li>
+<li>Hi = Oi</li>
+<li>My name is... = Meu nome é...</li>
+<li>Nice to meet you = Prazer em conhecê-lo</li>
+</ul>
+<div class="exercise">
+<p>Traduza para inglês: "Meu nome é João"</p>
+<input type="text" id="eng1">
+<button onclick="checkAnswer('eng1','My name is João')">Verificar</button>
+<p id="result-eng1"></p>
+</div>
+
+<!-- Aula 2 -->
+<img src="https://images.unsplash.com/photo-1593642532973-d31b6557fa68?fit=crop&w=800&h=150" class="banner" alt="Aula 2">
+<h3>Aula 2 - Perguntando como alguém está</h3>
+<p>Aprenda a perguntar sobre o bem-estar de alguém.</p>
+<ul>
+<li>How are you? = Como você está?</li>
+<li>I am fine = Eu estou bem</li>
+<li>And you? = E você?</li>
+</ul>
+<div class="exercise">
+<p>Traduza para inglês: "Como você está?"</p>
+<input type="text" id="eng2">
+<button onclick="checkAnswer('eng2','How are you?')">Verificar</button>
+<p id="result-eng2"></p>
+</div>
+
+<!-- ... Aqui você continuaria até Aula 30 -->
+
 </section>
 
-<section id="ingles">
-  <div class="card">
-    <h2>Aulas de Inglês</h2>
-    <ul>
-      <li>Inglês básico ao avançado</li>
-      <li>Inglês para viagens e trabalho</li>
-      <li>Conversação prática</li>
-      <li>Vocabulário profissional</li>
-    </ul>
-    <p><strong>Exemplo de aula:</strong></p>
-    <p>Hello! How are you? = Olá! Como você está?</p>
-    <button>Começar Inglês</button>
-  </div>
+<!-- ================= ESPANHOL ================= -->
+<section id="espanhol" class="hidden">
+<h2>Curso de Espanhol</h2>
+
+<!-- Aula 1 a 30 com banners e exercícios -->
+<img src="https://images.unsplash.com/photo-1567598508487-7be914de5982?fit=crop&w=800&h=150" class="banner" alt="Aula 1">
+<h3>Aula 1 - Saludos y presentaciones</h3>
+<ul>
+<li>Hola = Olá</li>
+<li>Buenos días = Bom dia</li>
+<li>Me llamo... = Meu nome é...</li>
+<li>Mucho gusto = Prazer em conhecê-lo</li>
+</ul>
+<div class="exercise">
+<p>Traduza para espanhol: "Meu nome é João"</p>
+<input type="text" id="esp1">
+<button onclick="checkAnswer('esp1','Me llamo João')">Verificar</button>
+<p id="result-esp1"></p>
+</div>
+
+<!-- Aula 2 -->
+<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?fit=crop&w=800&h=150" class="banner" alt="Aula 2">
+<h3>Aula 2 - Preguntando cómo estás</h3>
+<ul>
+<li>¿Cómo estás? = Como você está?</li>
+<li>Estoy bien = Eu estou bem</li>
+<li>¿Y tú? = E você?</li>
+</ul>
+<div class="exercise">
+<p>Traduza para espanhol: "Como você está?"</p>
+<input type="text" id="esp2">
+<button onclick="checkAnswer('esp2','¿Cómo estás?')">Verificar</button>
+<p id="result-esp2"></p>
+</div>
+
+<!-- ... Aqui você continuaria até Aula 30 -->
+
 </section>
 
-<section id="espanhol">
-  <div class="card">
-    <h2>Aulas de Espanhol</h2>
-    <ul>
-      <li>Espanhol básico ao avançado</li>
-      <li>Espanhol para viagens</li>
-      <li>Conversação latina</li>
-      <li>Expressões do dia a dia</li>
-    </ul>
-    <p><strong>Exemplo de aula:</strong></p>
-    <p>Hola, ¿cómo estás? = Olá, como você está?</p>
-    <button>Começar Espanhol</button>
-  </div>
-</section>
+</div>
 
-<section id="contato">
-  <div class="card">
-    <h2>Contato</h2>
-    <p>Email: contato@luxlingua.com</p>
-    <p>Atendimento online internacional</p>
-  </div>
-</section>
+<script>
+function login() {
+  const name = document.getElementById('username').value.trim();
+  if(name!=='') {
+    localStorage.setItem('studentName',name);
+    document.getElementById('loginArea').classList.add('hidden');
+    document.getElementById('homeArea').classList.remove('hidden');
+    document.getElementById('studentName').textContent = name;
+  } else { alert('Digite seu nome!'); }
+}
 
-<footer>
-  © 2026 LuxLingua. Todos os direitos reservados.
-</footer>
+function showCourse(id) {
+  document.getElementById('courseArea').classList.remove('hidden');
+  if(id==='ingles'){
+    document.getElementById('ingles').classList.remove('hidden');
+    document.getElementById('espanhol').classList.add('hidden');
+  } else {
+    document.getElementById('espanhol').classList.remove('hidden');
+    document.getElementById('ingles').classList.add('hidden');
+  }
+}
+
+function showProgress() {
+  const name = localStorage.getItem('studentName')||'Aluno';
+  alert('Progresso de '+name+':\n- Inglês: 30 aulas\n- Espanhol: 30 aulas\n(Progresso real será implementado em breve)');
+}
+
+function checkAnswer(inputId, correct) {
+  const userAnswer = document.getElementById(inputId).value.trim();
+  const result = document.getElementById('result-' + inputId);
+  if(userAnswer.toLowerCase() === correct.toLowerCase()){
+    result.textContent = '✅ Correto!';
+    result.style.color = 'green';
+  } else {
+    result.textContent = '❌ Errado! Resposta correta: ' + correct;
+    result.style.color = 'red';
+  }
+}
+</script>
 
 </body>
 </html>
